@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VOID SIGNAL — Sitio Oficial</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/loader.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== PANTALLA DE CARGA ===== -->
+  <div id="loader">
+    <canvas id="loader-canvas"></canvas>
+    <div class="loader-content">
+      <div class="loader-logo">
+        <svg viewBox="0 0 200 200" class="logo-svg" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="100,10 190,55 190,145 100,190 10,145 10,55" fill="none" stroke="#ff2d55" stroke-width="2"/>
+          <polygon points="100,30 170,65 170,135 100,170 30,135 30,65" fill="none" stroke="#ff2d55" stroke-width="1" opacity="0.4"/>
+          <text x="100" y="108" text-anchor="middle" font-family="Orbitron" font-size="22" font-weight="900" fill="#ff2d55">VS</text>
+          <line x1="10" y1="100" x2="190" y2="100" stroke="#ff2d55" stroke-width="0.5" opacity="0.3"/>
+          <line x1="100" y1="10" x2="100" y2="190" stroke="#ff2d55" stroke-width="0.5" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="loader-band-name">VOID SIGNAL</div>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar" id="loader-bar"></div>
+      </div>
+      <div class="loader-text" id="loader-text">Inicializando señal...</div>
+    </div>
+  </div>
+
+  <!-- ===== CURSOR PERSONALIZADO ===== -->
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
+
+  <!-- ===== PARTÍCULAS DE FONDO ===== -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar">
+    <div class="nav-logo" onclick="showPage('inicio')">
+      <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+        <polygon points="30,4 56,18 56,42 30,56 4,42 4,18" fill="none" stroke="#ff2d55" stroke-width="1.5"/>
+        <text x="30" y="36" text-anchor="middle" font-family="Orbitron" font-size="13" font-weight="900" fill="#ff2d55">VS</text>
+      </svg>
+      <span>VOID SIGNAL</span>
+    </div>
+    <div id="nav-links">
+      <a href="#" class="nav-link active" data-page="inicio">Inicio</a>
+      <a href="#" class="nav-link" data-page="musica">Música</a>
+      <a href="#" class="nav-link" data-page="banda">La Banda</a>
+      <a href="#" class="nav-link" data-page="giras">Giras</a>
+      <a href="#" class="nav-link" data-page="tienda">Tienda</a>
+      <a href="#" class="nav-link" data-page="contacto">Contacto</a>
+    </div>
+    <div id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ===== MENÚ MÓVIL ===== -->
+  <div id="mobile-menu">
+    <a href="#" class="mob-link" data-page="inicio">Inicio</a>
+    <a href="#" class="mob-link" data-page="musica">Música</a>
+    <a href="#" class="mob-link" data-page="banda">La Banda</a>
+    <a href="#" class="mob-link" data-page="giras">Giras</a>
+    <a href="#" class="mob-link" data-page="tienda">Tienda</a>
+    <a href="#" class="mob-link" data-page="contacto">Contacto</a>
+  </div>
+
+  <!-- ===== PÁGINAS ===== -->
+  <div id="page-container">
+
+    <!-- ——— INICIO ——— -->
+    <section class="page active" id="inicio">
+      <div class="hero">
+        <div class="hero-glitch" data-text="VOID SIGNAL">VOID SIGNAL</div>
+        <p class="hero-sub">DESDE LAS SOMBRAS DEL SONIDO</p>
+        <div class="hero-tags">
+          <span>Post-Metal</span>
+          <span>Electro-Industrial</span>
+          <span>Dark Wave</span>
+        </div>
+        <button class="cta-btn" onclick="showPage('musica')">Escuchar Ahora</button>
+        <div class="scroll-hint">▼</div>
+      </div>
+
+      <div class="about-strip fade-in">
+        <div class="about-stat"><span class="stat-num" data-target="8">0</span><span class="stat-label">Años</span></div>
+        <div class="about-stat"><span class="stat-num" data-target="4">0</span><span class="stat-label">Álbumes</span></div>
+        <div class="about-stat"><span class="stat-num" data-target="120">0</span><span class="stat-label">Conciertos</span></div>
+        <div class="about-stat"><span class="stat-num" data-target="2800000">0</span><span class="stat-label">Fans</span></div>
+      </div>
+
+      <div class="bio-block fade-in">
+        <div class="bio-img">
+          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="Void Signal en vivo" />
+          <div class="bio-img-overlay"></div>
+        </div>
+        <div class="bio-text">
+          <h2>Quiénes Somos</h2>
+          <p>Void Signal nació en 2016 en los sótanos de la Ciudad de México, donde el ruido de la metrópolis se convirtió en inspiración. Cuatro músicos decidieron que el silencio entre notas era tan importante como las notas mismas.</p>
+          <p>Mezclando el peso del post-metal con texturas electrónicas oscuras y letras que exploran la mente humana al límite, la banda creó un sonido que no existía antes: brutal, atmosférico, honesto.</p>
+          <p>Su álbum debut <em>"Signal Zero"</em> fue elegido uno de los mejores lanzamientos independientes del año por más de 30 medios especializados.</p>
+          <a class="ghost-btn" href="#" onclick="showPage('banda'); return false;">Conocer la Banda →</a>
+        </div>
+      </div>
+
+      <div class="latest-section fade-in">
+        <h2 class="section-title">Último Lanzamiento</h2>
+        <div class="latest-album">
+          <div class="album-cover-wrap">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&q=80" alt="Álbum Fractura" class="album-cover-img"/>
+            <div class="album-cover-glow"></div>
+          </div>
+          <div class="album-info">
+            <div class="album-label">ÁLBUM · 2024</div>
+            <h3 class="album-title">FRACTURA</h3>
+            <p>Doce canciones sobre el quiebre y la reconstrucción. El álbum más personal y más pesado de Void Signal hasta la fecha.</p>
+            <div class="tracklist">
+              <div class="track" onclick="playTrack(this)"><span class="track-num">01</span><span class="track-name">Espejo Roto</span><span class="track-dur">4:12</span></div>
+              <div class="track" onclick="playTrack(this)"><span class="track-num">02</span><span class="track-name">Señal Perdida</span><span class="track-dur">5:44</span></div>
+              <div class="track" onclick="playTrack(this)"><span class="track-num">03</span><span class="track-name">Vacío Interior</span><span class="track-dur">3:58</span></div>
+              <div class="track" onclick="playTrack(this)"><span class="track-num">04</span><span class="track-name">Silencio Eléctrico</span><span class="track-dur">6:30</span></div>
+              <div class="track" onclick="playTrack(this)"><span class="track-num">05</span><span class="track-name">Fractura I</span><span class="track-dur">7:01</span></div>
+            </div>
+            <div class="stream-btns">
+              <a class="stream-btn spotify" href="#">● Spotify</a>
+              <a class="stream-btn apple" href="#">♫ Apple Music</a>
+              <a class="stream-btn yt" href="#">▶ YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quotes-section fade-in">
+        <h2 class="section-title">Lo Que Dicen</h2>
+        <div class="quotes-grid">
+          <div class="quote-card">
+            <p>"Una de las bandas más originales del metal latinoamericano. Su sonido es puro vértigo."</p>
+            <cite>— Metal Injection MX</cite>
+          </div>
+          <div class="quote-card">
+            <p>"Fractura es una obra maestra del industrial oscuro. No encontrarás nada igual este año."</p>
+            <cite>— Noise Mag</cite>
+          </div>
+          <div class="quote-card">
+            <p>"Sus conciertos son una experiencia física, no solo musical. Sales diferente de como entraste."</p>
+            <cite>— Loudwire Latam</cite>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— MÚSICA ——— -->
+    <section class="page" id="musica">
+      <div class="page-hero">
+        <h1 class="page-title glitch-small" data-text="DISCOGRAFÍA">DISCOGRAFÍA</h1>
+        <p class="page-subtitle">Cuatro álbumes. Cien canciones. Un solo universo sonoro.</p>
+      </div>
+
+      <div class="disco-grid fade-in">
+        <div class="disco-card" onclick="expandAlbum(this)">
+          <div class="disco-cover">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&q=80" alt="Signal Zero"/>
+            <div class="disco-overlay">
+              <span>Ver Tracks</span>
+            </div>
+          </div>
+          <div class="disco-info">
+            <h3>Signal Zero</h3>
+            <span class="disco-year">2016 · 10 canciones</span>
+          </div>
+          <div class="disco-tracks hidden">
+            <p>01. Protocolo Vacío &nbsp;&nbsp; 4:22</p>
+            <p>02. Corriente Oscura &nbsp;&nbsp; 5:11</p>
+            <p>03. Nodo &nbsp;&nbsp; 3:48</p>
+            <p>04. Latencia &nbsp;&nbsp; 6:02</p>
+            <p>05. Entropía &nbsp;&nbsp; 4:55</p>
+          </div>
+        </div>
+        <div class="disco-card" onclick="expandAlbum(this)">
+          <div class="disco-cover">
+            <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&q=80" alt="Colapso"/>
+            <div class="disco-overlay">
+              <span>Ver Tracks</span>
+            </div>
+          </div>
+          <div class="disco-info">
+            <h3>Colapso</h3>
+            <span class="disco-year">2018 · 11 canciones</span>
+          </div>
+          <div class="disco-tracks hidden">
+            <p>01. Caída Libre &nbsp;&nbsp; 5:30</p>
+            <p>02. Gravitación &nbsp;&nbsp; 4:10</p>
+            <p>03. Masa Crítica &nbsp;&nbsp; 6:45</p>
+            <p>04. Detonación &nbsp;&nbsp; 3:22</p>
+            <p>05. Ondas &nbsp;&nbsp; 7:01</p>
+          </div>
+        </div>
+        <div class="disco-card" onclick="expandAlbum(this)">
+          <div class="disco-cover">
+            <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=400&q=80" alt="Mente Roja"/>
+            <div class="disco-overlay">
+              <span>Ver Tracks</span>
+            </div>
+          </div>
+          <div class="disco-info">
+            <h3>Mente Roja</h3>
+            <span class="disco-year">2021 · 9 canciones</span>
+          </div>
+          <div class="disco-tracks hidden">
+            <p>01. Umbral &nbsp;&nbsp; 4:50</p>
+            <p>02. Neurona &nbsp;&nbsp; 5:22</p>
+            <p>03. Cicatriz Digital &nbsp;&nbsp; 4:08</p>
+            <p>04. Impulso &nbsp;&nbsp; 6:33</p>
+            <p>05. Mente Roja &nbsp;&nbsp; 8:01</p>
+          </div>
+        </div>
+        <div class="disco-card featured" onclick="expandAlbum(this)">
+          <div class="new-badge">NUEVO</div>
+          <div class="disco-cover">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&q=80" alt="Fractura"/>
+            <div class="disco-overlay">
+              <span>Ver Tracks</span>
+            </div>
+          </div>
+          <div class="disco-info">
+            <h3>Fractura</h3>
+            <span class="disco-year">2024 · 12 canciones</span>
+          </div>
+          <div class="disco-tracks hidden">
+            <p>01. Espejo Roto &nbsp;&nbsp; 4:12</p>
+            <p>02. Señal Perdida &nbsp;&nbsp; 5:44</p>
+            <p>03. Vacío Interior &nbsp;&nbsp; 3:58</p>
+            <p>04. Silencio Eléctrico &nbsp;&nbsp; 6:30</p>
+            <p>05. Fractura I &nbsp;&nbsp; 7:01</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-section fade-in">
+        <h2 class="section-title">Video Oficial</h2>
+        <div class="video-wrap">
+          <iframe width="100%" height="450" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Void Signal - Señal Perdida (Video Oficial)" frameborder="0" allowfullscreen></iframe>
+          <div class="video-label">VOID SIGNAL — "Señal Perdida" (Video Oficial)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— LA BANDA ——— -->
+    <section class="page" id="banda">
+      <div class="page-hero">
+        <h1 class="page-title glitch-small" data-text="LA BANDA">LA BANDA</h1>
+        <p class="page-subtitle">Cuatro almas. Un solo pulso.</p>
+      </div>
+
+      <div class="members-grid fade-in">
+        <div class="member-card">
+          <div class="member-img-wrap">
+            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&q=80" alt="Lena Voss"/>
+            <div class="member-glow"></div>
+          </div>
+          <h3>Lena Voss</h3>
+          <span class="member-role">Voz · Sintetizadores</span>
+          <p>La voz de Void Signal. Su rango vocal va desde susurros casi inaudibles hasta alaridos que raspan el aire. Compositora principal y arquitecta del universo lírico de la banda.</p>
+          <div class="member-socials">
+            <a href="#">IG</a><a href="#">TW</a>
+          </div>
+        </div>
+        <div class="member-card">
+          <div class="member-img-wrap">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Marcos Drex"/>
+            <div class="member-glow"></div>
+          </div>
+          <h3>Marcos Drex</h3>
+          <span class="member-role">Guitarra · Producción</span>
+          <p>El cerebro sónico. Sus riffs combinan distorsión extrema con capas de ambient que crean paisajes únicos. Ex-productor de electrónica que encontró su hogar en el metal pesado.</p>
+          <div class="member-socials">
+            <a href="#">IG</a><a href="#">TW</a>
+          </div>
+        </div>
+        <div class="member-card">
+          <div class="member-img-wrap">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&q=80" alt="Rei Nakano"/>
+            <div class="member-glow"></div>
+          </div>
+          <h3>Rei Nakano</h3>
+          <span class="member-role">Bajo · Programación</span>
+          <p>Su bajo es el esqueleto que sostiene todo. Combina líneas de bajo tradicionales con programación de samples en tiempo real. Estudió jazz antes de caer en las garras del industrial.</p>
+          <div class="member-socials">
+            <a href="#">IG</a><a href="#">TW</a>
+          </div>
+        </div>
+        <div class="member-card">
+          <div class="member-img-wrap">
+            <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&q=80" alt="Sam Colt"/>
+            <div class="member-glow"></div>
+          </div>
+          <h3>Sam Colt</h3>
+          <span class="member-role">Batería · Percusiones</span>
+          <p>La fuerza física de Void Signal. Sus ritmos mezclan el blast beat del metal extremo con groove funk y programación de caja de ritmos. El más extrovertido de los cuatro.</p>
+          <div class="member-socials">
+            <a href="#">IG</a><a href="#">TW</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-section fade-in">
+        <h2 class="section-title">Historia</h2>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <span class="tl-year">2016</span>
+              <h4>El Comienzo</h4>
+              <p>Lena y Marcos se conocen en un festival underground en CDMX. Publican un demo de 3 canciones que se viraliza en foros de metal latinoamericano.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <span class="tl-year">2017</span>
+              <h4>La Formación Completa</h4>
+              <p>Rei y Sam se unen. La banda graba "Signal Zero" en un estudio prestado durante tres semanas intensas. El álbum se lanza de forma independiente.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <span class="tl-year">2019</span>
+              <h4>Primera Gira Internacional</h4>
+              <p>Void Signal toca por primera vez en Europa: 18 fechas en Alemania, España y Francia. "Colapso" debuta en charts independientes de tres países.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <span class="tl-year">2022</span>
+              <h4>Mente Roja</h4>
+              <p>El álbum más oscuro e introspectivo. Grabado durante el aislamiento pandémico, explora el colapso mental con una honestidad brutal y cruda.</p>
+            </div>
+          </div>
+          <div class="tl-item active">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <span class="tl-year">2024</span>
+              <h4>Fractura — El Regreso</h4>
+              <p>Con su cuarto álbum, Void Signal alcanza su punto más alto. Firman con un sello internacional y comienzan su gira mundial más ambiciosa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— GIRAS ——— -->
+    <section class="page" id="giras">
+      <div class="page-hero">
+        <h1 class="page-title glitch-small" data-text="GIRAS">GIRAS</h1>
+        <p class="page-subtitle">FRACTURA WORLD TOUR 2025</p>
+      </div>
+
+      <div class="tour-intro fade-in">
+        <p>Más de 40 fechas en 15 países. La gira más grande de Void Signal llega a tu ciudad. No hay dos conciertos iguales.</p>
+      </div>
+
+      <div class="tour-list fade-in">
+        <div class="tour-event sold-out">
+          <div class="tour-date"><span class="t-day">15</span><span class="t-month">ENE</span><span class="t-year">2025</span></div>
+          <div class="tour-place">
+            <h4>Foro Indie Rocks!</h4>
+            <span>Ciudad de México, MX</span>
+          </div>
+          <div class="tour-tag sold">AGOTADO</div>
+        </div>
+        <div class="tour-event sold-out">
+          <div class="tour-date"><span class="t-day">22</span><span class="t-month">ENE</span><span class="t-year">2025</span></div>
+          <div class="tour-place">
+            <h4>Teatro Flores</h4>
+            <span>Guadalajara, MX</span>
+          </div>
+          <div class="tour-tag sold">AGOTADO</div>
+        </div>
+        <div class="tour-event">
+          <div class="tour-date"><span class="t-day">08</span><span class="t-month">FEB</span><span class="t-year">2025</span></div>
+          <div class="tour-place">
+            <h4>Club Treehouse</h4>
+            <span>Buenos Aires, AR</span>
+          </div>
+          <a class="tour-btn" href="#">Boletos</a>
+        </div>
+        <div class="tour-event">
+          <div class="tour-date"><span class="t-day">14</span><span class="t-month">FEB</span><span class="t-year">2025</span></div>
+          <div class="tour-place">
+            <h4>Sala Capitol</h4>
+            <span>Santiago, CL</span>
+          </div>
+          <a class="tour-btn" href="#">Boletos</a>
+        </div>
+        <div class="tour-event">
+          <div class="tour-date"><span class="t-day">01</span><span class="t-month">MAR</span><span class="t-year">2025</span></div>
+          <div class="tour-place">
+            <h4>Razzmatazz</h4>
+            <span>Barcelona, ES</span>
+          </div>
+          <a class="tour-btn" href="#">Boletos</a>
+        </div>
+        <div class="tour-event">
+          <div class="tour-date"><span class="t-day">08</span><span class="t-month">MAR</span><span class="t-year">2025</span></div>
+          <div class="tour-place">
+            <h4>Berghain Kantine</h4>
+            <span>Berlín, DE</span>
+          </div>
+          <a class="tour-btn" href="#">Boletos</a>
+        </div>
+        <div class="tour-event">
+          <div class="tour-date"><span class="t-day">15</span><span class="t-month">MAR</span><span class="t-year">2025</span></div>
+          <div class="tour-place">
+            <h4>O2 Forum Kentish Town</h4>
+            <span>Londres, UK</span>
+          </div>
+          <a class="tour-btn" href="#">Boletos</a>
+        </div>
+        <div class="tour-event">
+          <div class="tour-date"><span class="t-day">28</span><span class="t-month">MAR</span><span class="t-year">2025</span></div>
+          <div class="tour-place">
+            <h4>Santos Party House</h4>
+            <span>Nueva York, US</span>
+          </div>
+          <a class="tour-btn" href="#">Boletos</a>
+        </div>
+        <div class="tour-event">
+          <div class="tour-date"><span class="t-day">05</span><span class="t-month">ABR</span><span class="t-year">2025</span></div>
+          <div class="tour-place">
+            <h4>Venue Japan</h4>
+            <span>Tokio, JP</span>
+          </div>
+          <a class="tour-btn" href="#">Boletos</a>
+        </div>
+      </div>
+
+      <div class="vip-block fade-in">
+        <div class="vip-inner">
+          <div class="vip-icon">★</div>
+          <h3>Experiencia VIP</h3>
+          <p>Meet & Greet con la banda · Acceso al backstage · Merch exclusivo firmado · Foto profesional</p>
+          <a class="cta-btn" href="#">Ver Paquetes VIP</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— TIENDA ——— -->
+    <section class="page" id="tienda">
+      <div class="page-hero">
+        <h1 class="page-title glitch-small" data-text="TIENDA">TIENDA</h1>
+        <p class="page-subtitle">Merch Oficial · Ediciones Limitadas</p>
+      </div>
+
+      <div class="shop-filters fade-in">
+        <button class="filter-btn active" data-filter="all">Todo</button>
+        <button class="filter-btn" data-filter="ropa">Ropa</button>
+        <button class="filter-btn" data-filter="musica">Música</button>
+        <button class="filter-btn" data-filter="accesorios">Accesorios</button>
+      </div>
+
+      <div class="shop-grid fade-in">
+        <div class="shop-item" data-cat="ropa">
+          <div class="shop-img-wrap">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80" alt="Camiseta Void Signal"/>
+            <div class="shop-badge">LIMITADO</div>
+          </div>
+          <h4>Camiseta "Fractura"</h4>
+          <span class="shop-price">$29.99 USD</span>
+          <button class="shop-btn" onclick="addToCart(this, 'Camiseta Fractura', 29.99)">+ Añadir</button>
+        </div>
+        <div class="shop-item" data-cat="ropa">
+          <div class="shop-img-wrap">
+            <img src="https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=400&q=80" alt="Hoodie Void Signal"/>
+          </div>
+          <h4>Hoodie "Signal Zero"</h4>
+          <span class="shop-price">$59.99 USD</span>
+          <button class="shop-btn" onclick="addToCart(this, 'Hoodie Signal Zero', 59.99)">+ Añadir</button>
+        </div>
+        <div class="shop-item" data-cat="musica">
+          <div class="shop-img-wrap">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&q=80" alt="Vinilo Fractura"/>
+            <div class="shop-badge">NUEVO</div>
+          </div>
+          <h4>Vinilo "Fractura" — Ed. Especial</h4>
+          <span class="shop-price">$34.99 USD</span>
+          <button class="shop-btn" onclick="addToCart(this, 'Vinilo Fractura', 34.99)">+ Añadir</button>
+        </div>
+        <div class="shop-item" data-cat="musica">
+          <div class="shop-img-wrap">
+            <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=400&q=80" alt="CD Box Set"/>
+          </div>
+          <h4>Box Set — 4 Álbumes</h4>
+          <span class="shop-price">$89.99 USD</span>
+          <button class="shop-btn" onclick="addToCart(this, 'Box Set 4 Álbumes', 89.99)">+ Añadir</button>
+        </div>
+        <div class="shop-item" data-cat="accesorios">
+          <div class="shop-img-wrap">
+            <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=400&q=80" alt="Parche bordado"/>
+          </div>
+          <h4>Parche Bordado — Logo VS</h4>
+          <span class="shop-price">$12.99 USD</span>
+          <button class="shop-btn" onclick="addToCart(this, 'Parche Logo VS', 12.99)">+ Añadir</button>
+        </div>
+        <div class="shop-item" data-cat="accesorios">
+          <div class="shop-img-wrap">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Pin metálico"/>
+            <div class="shop-badge">LIMITADO</div>
+          </div>
+          <h4>Pin Metálico — Set de 3</h4>
+          <span class="shop-price">$18.99 USD</span>
+          <button class="shop-btn" onclick="addToCart(this, 'Pin Metálico Set', 18.99)">+ Añadir</button>
+        </div>
+      </div>
+
+      <!-- CARRITO FLOTANTE -->
+      <div id="cart-float">
+        <div id="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+        <div id="cart-panel">
+          <h3>Tu Carrito</h3>
+          <div id="cart-items"></div>
+          <div id="cart-total">Total: $0.00 USD</div>
+          <button class="cta-btn" style="margin-top:1rem;width:100%">Finalizar Compra</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— CONTACTO ——— -->
+    <section class="page" id="contacto">
+      <div class="page-hero">
+        <h1 class="page-title glitch-small" data-text="CONTACTO">CONTACTO</h1>
+        <p class="page-subtitle">Escríbenos. Respondemos a todos.</p>
+      </div>
+
+      <div class="contact-layout fade-in">
+        <div class="contact-form-wrap">
+          <form id="contact-form" onsubmit="sendForm(event)">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" placeholder="Tu nombre completo" required />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="tu@email.com" required />
+            </div>
+            <div class="form-group">
+              <label>Asunto</label>
+              <select>
+                <option>Prensa</option>
+                <option>Booking</option>
+                <option>Fan mail</option>
+                <option>Colaboración</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Mensaje</label>
+              <textarea rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            </div>
+            <button type="submit" class="cta-btn">Enviar Mensaje</button>
+            <div id="form-success" class="hidden">✓ Mensaje enviado. ¡Gracias!</div>
+          </form>
+        </div>
+
+        <div class="contact-info-wrap">
+          <div class="contact-info-card">
+            <h3>Management</h3>
+            <p>management@voidsignal.com</p>
+          </div>
+          <div class="contact-info-card">
+            <h3>Prensa & Media</h3>
+            <p>press@voidsignal.com</p>
+          </div>
+          <div class="contact-info-card">
+            <h3>Booking</h3>
+            <p>booking@voidsignal.com</p>
+          </div>
+          <div class="social-links">
+            <h3>Redes Sociales</h3>
+            <a class="social-link" href="#">Instagram</a>
+            <a class="social-link" href="#">Twitter / X</a>
+            <a class="social-link" href="#">YouTube</a>
+            <a class="social-link" href="#">Spotify</a>
+            <a class="social-link" href="#">Facebook</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-container -->
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="main-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">VOID SIGNAL</div>
+      <p class="footer-copy">© 2025 Void Signal — Todos los derechos reservados.</p>
+      <div class="footer-links">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">Prensa</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== TEXTO HOLOGRAMA ===== -->
+  <div class="holograma">Hecho con ruido y pasión 🔊</div>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/loader.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/shop.js"></script>
+  <script src="js/audio.js"></script>
+</body>
+</html>

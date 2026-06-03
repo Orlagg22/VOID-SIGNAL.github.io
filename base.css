@@ -1,0 +1,266 @@
+/* =============================================
+   BASE.CSS — Variables, Reset, Tipografía, Body
+   Void Signal Official Site
+   ============================================= */
+
+:root {
+  --rojo:     #ff2d55;
+  --rojo2:    #ff6b6b;
+  --negro:    #080808;
+  --gris-osc: #111;
+  --gris-med: #1a1a1a;
+  --gris-cla: #2a2a2a;
+  --blanco:   #f0f0f0;
+  --blanco2:  #aaa;
+  --acento:   #ff2d55;
+  --cyan:     #00e5ff;
+  --font-display: 'Orbitron', monospace;
+  --font-body:    'Rajdhani', sans-serif;
+  --font-mono:    'Share Tech Mono', monospace;
+  --nav-h: 70px;
+  --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--negro);
+  color: var(--blanco);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  cursor: none;
+  border: 6px solid transparent;
+  border-image: linear-gradient(135deg, var(--rojo), transparent, var(--rojo)) 1;
+  border-image-slice: 1;
+}
+
+/* ——— SELECCIÓN ——— */
+::selection {
+  background: var(--rojo);
+  color: #fff;
+}
+
+/* ——— SCROLLBAR ——— */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--negro); }
+::-webkit-scrollbar-thumb { background: var(--rojo); border-radius: 3px; }
+
+/* ——— TIPOGRAFÍA BASE ——— */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--blanco2);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: none;
+  font-family: var(--font-display);
+}
+
+/* ——— CANVAS DE FONDO ——— */
+#bg-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ——— CONTENEDOR DE PÁGINAS ——— */
+#page-container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* ——— SECCIÓN BASE ——— */
+.page {
+  display: none;
+  animation: pageEnter 0.6s var(--transition) forwards;
+  padding-top: var(--nav-h);
+}
+.page.active {
+  display: block;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ——— BOTONES GENERALES ——— */
+.cta-btn {
+  display: inline-block;
+  padding: 0.85rem 2.5rem;
+  background: var(--rojo);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: none;
+  transition: all var(--transition);
+  box-shadow: 0 0 20px rgba(255,45,85,0.4);
+}
+.cta-btn:hover {
+  background: #fff;
+  color: var(--rojo);
+  box-shadow: 0 0 40px rgba(255,45,85,0.7);
+  transform: translateY(-2px);
+}
+
+.ghost-btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border: 1px solid var(--rojo);
+  color: var(--rojo);
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  transition: all var(--transition);
+}
+.ghost-btn:hover {
+  background: var(--rojo);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(255,45,85,0.5);
+}
+
+/* ——— TÍTULOS DE SECCIÓN ——— */
+.section-title {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.section-title::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: var(--rojo);
+  width: 60%;
+  margin: 0.5rem auto 0;
+  box-shadow: 0 0 10px var(--rojo);
+}
+
+/* ——— FADE IN AL SCROLL ——— */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ——— PAGE HERO ——— */
+.page-hero {
+  text-align: center;
+  padding: 5rem 2rem 3rem;
+  border-bottom: 1px solid var(--gris-cla);
+  margin-bottom: 4rem;
+}
+.page-title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--blanco);
+}
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--rojo);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+}
+
+/* ——— HOLOGRAMA FLOTANTE ——— */
+.holograma {
+  position: fixed;
+  bottom: 18px;
+  right: 24px;
+  font-size: 0.85rem;
+  color: var(--cyan);
+  text-shadow: 0 0 8px var(--cyan), 0 0 18px var(--cyan);
+  font-family: var(--font-mono);
+  z-index: 900;
+  animation: flotando 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes flotando {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* ——— FOOTER ——— */
+#main-footer {
+  position: relative;
+  z-index: 2;
+  background: var(--gris-osc);
+  border-top: 1px solid var(--gris-cla);
+  padding: 2.5rem 2rem;
+}
+.footer-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--rojo);
+  letter-spacing: 0.3em;
+  margin-bottom: 0.75rem;
+}
+.footer-copy {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+.footer-links a {
+  font-size: 0.8rem;
+  color: #555;
+  margin: 0 0.75rem;
+  transition: color var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.footer-links a:hover { color: var(--rojo); }
+
+/* ——— RESPONSIVE ——— */
+@media (max-width: 768px) {
+  .page { padding-top: 65px; }
+  .section-title { font-size: 1.4rem; }
+}

@@ -1,0 +1,202 @@
+/* =============================================
+   ANIMATIONS.CSS — Animaciones y efectos
+   ============================================= */
+
+/* ——— GLITCH PRINCIPAL (hero) ——— */
+.hero-glitch {
+  position: relative;
+}
+.hero-glitch::before,
+.hero-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-display);
+  font-weight: 900;
+}
+.hero-glitch::before {
+  color: #00e5ff;
+  animation: glitchTop 3s infinite linear;
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  transform: translateX(-3px);
+}
+.hero-glitch::after {
+  color: var(--rojo);
+  animation: glitchBot 2.5s infinite linear;
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  transform: translateX(3px);
+}
+
+@keyframes glitchTop {
+  0%, 90%, 100% { transform: translateX(-3px); opacity: 0.8; }
+  91%  { transform: translateX(3px) skewX(2deg); opacity: 1; clip-path: polygon(0 10%, 100% 10%, 100% 40%, 0 40%); }
+  92%  { transform: translateX(-5px); clip-path: polygon(0 5%, 100% 5%, 100% 30%, 0 30%); }
+  93%  { transform: translateX(0); }
+}
+@keyframes glitchBot {
+  0%, 85%, 100% { transform: translateX(3px); opacity: 0.8; }
+  86%  { transform: translateX(-3px) skewX(-2deg); opacity: 1; clip-path: polygon(0 60%, 100% 60%, 100% 95%, 0 95%); }
+  87%  { transform: translateX(5px); }
+  88%  { transform: translateX(0); }
+}
+
+/* ——— GLITCH PEQUEÑO (títulos de página) ——— */
+.glitch-small {
+  position: relative;
+}
+.glitch-small::before,
+.glitch-small::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+}
+.glitch-small::before {
+  color: #00e5ff;
+  animation: glitchSmallA 4s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  transform: translateX(-2px);
+  opacity: 0;
+}
+.glitch-small::after {
+  color: var(--rojo);
+  animation: glitchSmallB 3.5s infinite;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  transform: translateX(2px);
+  opacity: 0;
+}
+@keyframes glitchSmallA {
+  0%, 94%, 100% { opacity: 0; }
+  95% { opacity: 1; transform: translateX(-4px) skewX(3deg); }
+  96% { transform: translateX(2px); }
+  97% { opacity: 0; }
+}
+@keyframes glitchSmallB {
+  0%, 88%, 100% { opacity: 0; }
+  89% { opacity: 1; transform: translateX(4px); }
+  91% { transform: translateX(-2px); }
+  93% { opacity: 0; }
+}
+
+/* ——— FADE IN UP ——— */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ——— SCANLINES DE FONDO ——— */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.07) 3px,
+    rgba(0,0,0,0.07) 4px
+  );
+  pointer-events: none;
+  z-index: 9990;
+}
+
+/* ——— TRACK PLAYING PULSE ——— */
+.track.playing {
+  color: var(--rojo);
+  background: rgba(255,45,85,0.08);
+  border-radius: 3px;
+  padding-left: 0.5rem;
+}
+
+/* ——— RIPPLE EN BOTONES ——— */
+.cta-btn {
+  position: relative;
+  overflow: hidden;
+}
+.cta-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.cta-btn:hover::after {
+  transform: scaleX(1);
+}
+
+/* ——— BORDE ANIMADO NAVBAR ——— */
+#navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--rojo), transparent);
+  animation: navGlow 4s ease-in-out infinite;
+}
+@keyframes navGlow {
+  0%,100% { opacity: 0.3; }
+  50%      { opacity: 1; }
+}
+
+/* ——— SHOP ITEM ADDED ANIMATION ——— */
+@keyframes itemAdded {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(0.95); }
+  60%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+.shop-btn.added {
+  animation: itemAdded 0.4s ease;
+  background: var(--rojo);
+  color: #fff;
+}
+
+/* ——— FORM FIELD FOCUS GLOW ——— */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  animation: fieldGlow 1.5s ease-in-out infinite alternate;
+}
+@keyframes fieldGlow {
+  from { box-shadow: 0 0 8px rgba(255,45,85,0.2); }
+  to   { box-shadow: 0 0 20px rgba(255,45,85,0.4); }
+}
+
+/* ——— TOUR EVENT STAGGER ——— */
+.tour-event:nth-child(1) { animation-delay: 0.05s; }
+.tour-event:nth-child(2) { animation-delay: 0.10s; }
+.tour-event:nth-child(3) { animation-delay: 0.15s; }
+.tour-event:nth-child(4) { animation-delay: 0.20s; }
+.tour-event:nth-child(5) { animation-delay: 0.25s; }
+.tour-event:nth-child(6) { animation-delay: 0.30s; }
+.tour-event:nth-child(7) { animation-delay: 0.35s; }
+.tour-event:nth-child(8) { animation-delay: 0.40s; }
+.tour-event:nth-child(9) { animation-delay: 0.45s; }
+
+/* ——— MEMBER CARD STAGGER ——— */
+.member-card:nth-child(1) { animation: fadeInUp 0.6s 0.1s both; }
+.member-card:nth-child(2) { animation: fadeInUp 0.6s 0.2s both; }
+.member-card:nth-child(3) { animation: fadeInUp 0.6s 0.3s both; }
+.member-card:nth-child(4) { animation: fadeInUp 0.6s 0.4s both; }
+
+/* ——— DISCO CARD HOVER EFFECT ——— */
+.disco-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(255,45,85,0.1));
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+.disco-card:hover::after { opacity: 1; }
